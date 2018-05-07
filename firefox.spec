@@ -6,7 +6,7 @@
 # for details.
 #
 # Build with Wayland Gtk+ backend?
-%global wayland_backend   0
+%global wayland_backend   1
 
 # Use system hunspell?
 %if 0%{?fedora} > 25
