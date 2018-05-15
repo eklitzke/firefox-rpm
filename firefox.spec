@@ -104,7 +104,7 @@
 Summary:        Mozilla Firefox Web browser
 Name:           firefox
 Version:        62.0
-Release:        4%{?pre_tag}%{?dist}
+Release:        1%{?pre_tag}%{?dist}
 URL:            https://www.mozilla.org/firefox/
 License:        MPLv1.1 or GPLv2+ or LGPLv2+
 Source0:        firefox-nightly.tar.xz
@@ -746,9 +746,9 @@ sed -i -e "s/\[Crash Reporter\]/[Crash Reporter]\nEnabled=1/" %{buildroot}/%{moz
 
 # Default
 %{__cp} %{SOURCE12} %{buildroot}%{mozappdir}/browser/defaults/preferences
-%if %{?wayland_backend}
-echo 'pref("webgl.force-enabled",true);' >> %{buildroot}%{mozappdir}/browser/defaults/preferences
-%endif
+# %if %{?wayland_backend}
+# echo 'pref("webgl.force-enabled",true);' >> %{buildroot}%{mozappdir}/browser/defaults/preferences
+# %endif
 
 # Copy over run-mozilla.sh
 %{__cp} build/unix/run-mozilla.sh %{buildroot}%{mozappdir}
@@ -875,6 +875,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 #---------------------------------------------------------------------
 
 %changelog
+* Tue May 15 2018 Evan Klitzke <evan@eklitzke.org> - 62.0-1
+- Wayland hacks, not for external consumption.
+
 * Thu May 3 2018 Martin Stransky <stransky@redhat.com> - 60.0-4
 - Updated to Firefox 60 build 2
 
