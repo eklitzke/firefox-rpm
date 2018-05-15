@@ -107,7 +107,7 @@ Version:        62.0
 Release:        4%{?pre_tag}%{?dist}
 URL:            https://www.mozilla.org/firefox/
 License:        MPLv1.1 or GPLv2+ or LGPLv2+
-Source0:        firefox-nightly.tar
+Source0:        firefox-nightly.tar.xz
 %if %{build_langpacks}
 Source1:        firefox-langpacks-%{version}%{?pre_version}-20180507.tar.xz
 %endif
