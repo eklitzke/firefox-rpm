@@ -1,5 +1,5 @@
 # Use system nspr/nss?
-%global system_nss        1
+%global system_nss        0
 
 # Wayland backend is not finished yet, see
 # https://bugzilla.mozilla.org/show_bug.cgi?id=635134
@@ -21,6 +21,7 @@
 %else
 %global system_sqlite     0
 %endif
+%global system_sqlite     0
 %global system_ffi        1
 
 # Use system cairo?
@@ -87,10 +88,10 @@
 %global mozappdir     %{_libdir}/%{name}
 %global mozappdirdev  %{_libdir}/%{name}-devel-%{version}
 %global langpackdir   %{mozappdir}/langpacks
-%global tarballdir    firefox-%{version}
+%global tarballdir    firefox-nightly
 
 %global official_branding       1
-%global build_langpacks         1
+%global build_langpacks         0
 
 %global enable_mozilla_crashreporter       0
 %if !%{debug_build}
@@ -98,14 +99,15 @@
 %global enable_mozilla_crashreporter       1
 %endif
 %endif
+%global enable_mozilla_crashreporter       0
 
 Summary:        Mozilla Firefox Web browser
 Name:           firefox
-Version:        60.0
+Version:        62.0
 Release:        4%{?pre_tag}%{?dist}
 URL:            https://www.mozilla.org/firefox/
 License:        MPLv1.1 or GPLv2+ or LGPLv2+
-Source0:        https://hg.mozilla.org/releases/mozilla-release/archive/firefox-%{version}%{?pre_version}.source.tar.xz
+Source0:        firefox-nightly.tar
 %if %{build_langpacks}
 Source1:        firefox-langpacks-%{version}%{?pre_version}-20180507.tar.xz
 %endif
@@ -325,14 +327,14 @@ This package contains results of tests executed during build.
 %patch402 -p1 -b .1196777
 %patch406 -p1 -b .256180
 %patch413 -p1 -b .1353817
-%patch414 -p1 -b .ffmpeg-4.0
+#%patch414 -p1 -b .ffmpeg-4.0
 %ifarch %{arm}
 %patch415 -p1 -b .mozilla-1238661
 %endif
-%patch416 -p1 -b .1424422
-%patch417 -p1 -b .bug1375074-save-restore-x28
+#%patch416 -p1 -b .1424422
+#%patch417 -p1 -b .bug1375074-save-restore-x28
 
-%patch421 -p1 -b .mozilla-1457691
+#%patch421 -p1 -b .mozilla-1457691
 
 # Patch for big endian platforms only
 %if 0%{?big_endian}
